@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-const pubSub = {
+const event = {
   events: {},
 
   on(eventName, fn) {
@@ -21,4 +21,4 @@ const pubSub = {
   },
 };
 
-export default pubSub;
+export default event;

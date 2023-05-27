@@ -1,18 +1,33 @@
+import _ from "lodash";
+import event from "./eventsModule";
+
 export default (function () {
-  const listOfLists = {};
+  const listOfLists = [];
 
   class List {
-    constructor(title) {
+    constructor(title, description) {
       this.id = listOfLists.length + 1; // placeholder
-      this.title = title;
       this.creationDate = new Date();
+      this.title = title;
+      this.description = description || null;
     }
   }
 
-  const createList = (title) => {
-    const newList = new List(title);
+  const createList = (title, description) => {
+    const newList = new List(title, description);
     listOfLists.push(newList);
   };
 
-  const deleteList = null;
+  const deleteList = (list) => {
+    _.pull(listOfLists, list);
+  };
+
+  const getLists = () => listOfLists;
+
+  event.on("createList", createList);
+  event.on("deleteList", deleteList);
+
+  return {
+    getLists,
+  };
 })();
