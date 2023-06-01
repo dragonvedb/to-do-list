@@ -8,9 +8,7 @@ window.cli = {
     event.emit("createList", title, description);
   },
   removeList(id) {
-    const lists = list.getLists();
-    const listToKill = lists.find((list) => list.id === id);
-    event.emit("deleteList", listToKill);
+    event.emit("deleteList", id);
   },
   printLists() {
     const lists = list.getLists();
@@ -24,9 +22,12 @@ window.cli = {
   },
 };
 
-window.cli.newList("buy milk", "i love milk");
-window.cli.newList("buy milk", " ");
-window.cli.newList("buy milk", "i HATE milk");
+window.cli.newList("shopping", "");
+window.cli.newList("Game Dev", "List of all the major milestones to release");
+window.cli.newList(
+  "cleaning rooms",
+  "so i never forget to vacuum under the counter again"
+);
 window.cli.newList("buy milk", "i llluvv milkkk");
 
 window.cli.removeList(2);

@@ -10,6 +10,7 @@ export default (function () {
       this.creationDate = new Date();
       this.title = title;
       this.description = description || null;
+      this.toDo = [];
     }
   }
 
@@ -18,8 +19,9 @@ export default (function () {
     listOfLists.push(newList);
   };
 
-  const deleteList = (list) => {
-    _.pull(listOfLists, list);
+  const deleteList = (id) => {
+    const listToKill = listOfLists.find((list) => list.id === id);
+    _.pull(listOfLists, listToKill);
   };
 
   const getLists = () => listOfLists;
