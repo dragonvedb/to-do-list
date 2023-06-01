@@ -10,11 +10,14 @@ window.cli = {
   removeList(id) {
     event.emit("deleteList", id);
   },
+  updateList(id, title, description) {
+    event.emit("updateList", id, title, description);
+  },
   printLists() {
     const lists = list.getLists();
     const formattedList = lists.reduce(
       (acc, item) =>
-        `${acc}#${item.id} | ${item.title} | ${item.description}\n`,
+        `${acc}#${item.id} | ${item.title} | ${item.description || ""}\n`,
       "List of lists:\n\n"
     );
 
@@ -28,8 +31,9 @@ window.cli.newList(
   "cleaning rooms",
   "so i never forget to vacuum under the counter again"
 );
-window.cli.newList("buy milk", "i llluvv milkkk");
+window.cli.newList("", "i llluvv milkkk");
 
-window.cli.removeList(2);
+window.cli.updateList(2, "Video Game", "lets do this");
+window.cli.updateList(4, "", "buy milk");
 
 window.cli.printLists();

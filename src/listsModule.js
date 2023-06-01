@@ -8,7 +8,7 @@ export default (function () {
     constructor(title, description) {
       this.id = listOfLists.length + 1; // placeholder
       this.creationDate = new Date();
-      this.title = title;
+      this.title = title || "New List";
       this.description = description || null;
       this.toDo = [];
     }
@@ -24,10 +24,17 @@ export default (function () {
     _.pull(listOfLists, listToKill);
   };
 
+  const updateList = (id, title, description) => {
+    const listToUpdate = listOfLists.find((list) => list.id === id);
+    if (title) listToUpdate.title = title;
+    if (description) listToUpdate.description = description;
+  };
+
   const getLists = () => listOfLists;
 
   event.on("createList", createList);
   event.on("deleteList", deleteList);
+  event.on("updateList", updateList);
 
   return {
     getLists,
