@@ -7,17 +7,19 @@ window.cli = {
   newList(title, description) {
     event.emit("createList", title, description);
   },
-  removeList(id) {
-    event.emit("deleteList", id);
+  removeList(i) {
+    const lists = list.getLists();
+    event.emit("deleteList", lists[i - 1].id);
   },
-  updateList(id, title, description) {
-    event.emit("updateList", id, title, description);
+  updateList(i, title, description) {
+    const lists = list.getLists();
+    event.emit("updateList", lists[i - 1].id, title, description);
   },
   printLists() {
     const lists = list.getLists();
     const formattedList = lists.reduce(
-      (acc, item) =>
-        `${acc}#${item.id} | ${item.title} | ${item.description || ""}\n`,
+      (acc, item, index) =>
+        `${acc}#${index + 1} | ${item.title} | ${item.description || ""}\n`,
       "List of lists:\n\n"
     );
 
@@ -34,6 +36,5 @@ window.cli.newList(
 window.cli.newList("", "i llluvv milkkk");
 
 window.cli.updateList(2, "Video Game", "lets do this");
-window.cli.updateList(4, "", "buy milk");
 
 window.cli.printLists();
