@@ -1,23 +1,12 @@
-/* eslint max-classes-per-file: ["error", { ignoreExpressions: true }] */
-
 import _ from "lodash";
 import event from "./eventsModule";
 
 export default (function () {
-  const idGenerator = 0;
+  let idGenerator = 0;
 
   const listOfLists = [];
 
   class List {
-    static ToDo = class {
-      constructor(title, description) {
-        this.id = idGenerator++; // placeholder
-        this.creationDate = new Date();
-        this.title = title || "To-Do";
-        this.description = description || null;
-      }
-    };
-
     constructor(title, description) {
       this.id = idGenerator++; // placeholder
       this.creationDate = new Date();
@@ -25,11 +14,6 @@ export default (function () {
       this.description = description || null;
       this.toDo = [];
     }
-
-    createToDo = (title, description) => {
-      const newToDo = new ToDo(title, description);
-      this.toDo.push(newToDo);
-    };
   }
 
   const createList = (title, description) => {
