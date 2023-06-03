@@ -22,14 +22,23 @@ export default (function () {
   };
 
   const deleteList = (id) => {
-    const listToKill = listOfLists.find((list) => list.id === id);
-    _.pull(listOfLists, listToKill);
+    _.remove(listOfLists, (list) => list.id === id);
   };
 
   const updateList = (id, title, description) => {
     const listToUpdate = listOfLists.find((list) => list.id === id);
     if (title) listToUpdate.title = title;
     if (description) listToUpdate.description = description;
+  };
+
+  const addToDo = (listId, toDo) => {
+    const parentList = listOfLists.find((list) => list.id === listId);
+    parentList.toDo.push(toDo);
+  };
+
+  const removeToDo = (listId, toDoId) => {
+    const parentList = listOfLists.find((list) => list.id === listId);
+    _.remove(parentList, (toDo) => toDo.id === toDoId);
   };
 
   const getLists = () => listOfLists;
