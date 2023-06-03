@@ -46,6 +46,8 @@ export default (function () {
   event.on("createList", createList);
   event.on("deleteList", deleteList);
   event.on("updateList", updateList);
+  event.on("addToDo", addToDo);
+  event.on("removeToDo", removeToDo);
 
   return {
     getLists,

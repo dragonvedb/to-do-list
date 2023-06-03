@@ -21,11 +21,17 @@ export default (function () {
   const createToDo = (title, description, dueDate, priority, list) => {
     const newToDo = new ToDo(title, description, dueDate, priority, list);
     listOfToDos.push(newToDo);
+    if (newToDo.list) {
+      event.emit("addToDo", list, newToDo);
+    }
   };
 
   const deleteToDo = (id) => {
     const toDoToKill = listOfToDos.find((toDo) => toDo.id === id);
     _.pull(listOfToDos, toDoToKill);
+    if (toDoToKill.list) {
+      event.emit("addToDo", toDoToKill.list, toDoToKill.id);
+    }
   };
 
   const updateToDo = (id, title, description, dueDate, priority) => {
