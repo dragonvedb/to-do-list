@@ -10,7 +10,48 @@ aside {
     display: inline-block;
     height: 100%;
     width: 20%;
+    overflow: hidden;
+    resize: horizontal;
     background-color: yellow;
+}
+
+aside ul {
+    padding-left: 0;
+}
+
+aside li {
+    list-style: none;
+}
+
+aside li button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+button .totalCount {
+    font-weight: bold;
+}
+
+button .listName {
+    flex-grow: 1;
+    text-align: start;
+    padding: 0 5px 0 10px;
+    overflow: clip;
+    text-overflow: ellipsis;
+}
+
+button .due {
+    height: 25px;
+    width: 25px;
+    flex-shrink: 0;
+    text-align: center;
+    border-radius: 50%;
+    background-color: red;
+    color: aliceblue;
 }
 
 main {
@@ -22,7 +63,7 @@ main {
 #form-container {
     position: fixed;
     bottom: 0;
-    height: 20%;
+    height: 15%;
     width: 100%;
     background-color: green;
 }
